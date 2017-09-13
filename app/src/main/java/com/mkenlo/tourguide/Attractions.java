@@ -1,10 +1,12 @@
 package com.mkenlo.tourguide;
 
+import java.io.Serializable;
+
 /**
  * Created by Melanie on 8/28/2017.
  */
 
-public class Attractions {
+public class Attractions implements Serializable {
 
     private int id;
     private String name;
@@ -21,16 +23,8 @@ public class Attractions {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {

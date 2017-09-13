@@ -3,6 +3,7 @@ package com.mkenlo.tourguide;
 /**
  * Created by Melanie on 9/13/2017.
  */
+
 import android.content.Context;
 
 import com.google.gson.Gson;
@@ -50,8 +51,8 @@ public class JsonData {
         }
 
 
-
     }
+
     public List<Attractions> getBeachList() {
 
         String json;
@@ -73,6 +74,7 @@ public class JsonData {
         }
 
     }
+
     public List<Attractions> getParkList() {
         String json;
         try {
@@ -92,6 +94,7 @@ public class JsonData {
             return null;
         }
     }
+
     public List<Attractions> getStreetList() {
         String json;
         try {
