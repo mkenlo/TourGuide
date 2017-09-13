@@ -1,14 +1,13 @@
 package com.mkenlo.tourguide;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +17,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+public class BeachFragment extends Fragment {
 
-public class CitiesFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -29,17 +26,17 @@ public class CitiesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public CitiesFragment() {
+
+    public BeachFragment() {
         // Required empty public constructor
     }
 
-    public static CitiesFragment newInstance(String param1, String param2) {
-        CitiesFragment fragment = new CitiesFragment();
+    public static BeachFragment newInstance(String param1, String param2) {
+        BeachFragment fragment = new BeachFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
-
         return fragment;
     }
 
@@ -56,42 +53,30 @@ public class CitiesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_cities, container, false);
-        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.list_cities);
-        rv.setHasFixedSize(true);
-
-        JsonData mCitiesData = new JsonData(getContext());
-        CitiesAdapter mAdapter = new CitiesAdapter(mCitiesData.getCityList(), getContext());
-        rv.setAdapter(mAdapter);
-        LinearLayoutManager lm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(lm);
-
-        return rootView;
+        return inflater.inflate(R.layout.fragment_beach, container, false);
     }
 
+    public class BeachAdapter extends RecyclerView.Adapter<BeachAdapter.ViewHolder> {
 
-
-    public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.ViewHolder> {
-
-        private List<Attractions> list_cities;
+        private List<Attractions> list_beach;
         private Context context;
 
-        public CitiesAdapter(List<Attractions> list_cities, Context context) {
-            this.list_cities = list_cities;
+        public BeachAdapter(List<Attractions> list, Context context) {
+            this.list_beach = list;
             this.context = context;
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_cities_item, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_beach_item, parent, false);
             return new ViewHolder(v);
 
         }
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            final Attractions city = list_cities.get(position);
+            final Attractions city = list_beach.get(position);
 
             Drawable imgDrawable = ContextCompat.getDrawable(context,
                     context.getResources().getIdentifier(city.getHeader(), "drawable", context.getPackageName()));
@@ -112,7 +97,7 @@ public class CitiesFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return list_cities.size();
+            return list_beach.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
@@ -133,6 +118,4 @@ public class CitiesFragment extends Fragment {
         }
 
     }
-
-
 }

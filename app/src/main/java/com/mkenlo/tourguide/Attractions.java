@@ -12,6 +12,7 @@ public class Attractions {
     private String[] images;
     private String location;
     private String city;
+    private String header;
 
     public Attractions() {
     }
@@ -46,5 +47,9 @@ public class Attractions {
 
     public String getCity() {
         return city;
+    }
+
+    public String getHeader() {
+        return header;
     }
 }
