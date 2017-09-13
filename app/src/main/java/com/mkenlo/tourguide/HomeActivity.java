@@ -110,7 +110,7 @@ public class HomeActivity extends AppCompatActivity {
                     return getResources().getString(R.string.section_two);
                 case 2:
                     return getResources().getString(R.string.section_three);
-                case 4:
+                case 3:
                     return getResources().getString(R.string.section_four);
             }
             return null;

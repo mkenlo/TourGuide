@@ -25,7 +25,7 @@ import static com.mkenlo.tourguide.R.id.city;
 
 public class CitiesActivity extends AppCompatActivity {
 
-    public Cities city;
+    public Attractions city;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +44,7 @@ public class CitiesActivity extends AppCompatActivity {
 
 
         int cityId = getIntent().getIntExtra("cityId", 0);
-        CitiesJson mCitiesData = new CitiesJson(getBaseContext());
+        JsonData mCitiesData = new JsonData(getBaseContext());
         city = mCitiesData.getCityList().get(cityId-1);
 
         TextView cityName = (TextView) findViewById(R.id.city_name);
@@ -55,7 +55,7 @@ public class CitiesActivity extends AppCompatActivity {
         cityDesc.setText(city.getDescription());
         ImageView cityImg = (ImageView) findViewById(R.id.city_image);
         Drawable drawable = ContextCompat.getDrawable(getBaseContext(),
-                getBaseContext().getResources().getIdentifier(city.getImage(), "drawable", getBaseContext().getPackageName()));
+                getBaseContext().getResources().getIdentifier(city.getHeader(), "drawable", getBaseContext().getPackageName()));
 
         cityImg.setImageDrawable(drawable);
 
@@ -66,32 +66,31 @@ public class CitiesActivity extends AppCompatActivity {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        AttractionsListAdapter mAdapter = new AttractionsListAdapter(city.getAttractions());
+        AttractionsImagesRecyclerAdapter mAdapter = new AttractionsImagesRecyclerAdapter(city.getImages());
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public class AttractionsListAdapter extends RecyclerView.Adapter<AttractionsListAdapter.ViewHolder> {
-        private List<Attractions> mAttractions;
+    public class AttractionsImagesRecyclerAdapter extends RecyclerView.Adapter<AttractionsImagesRecyclerAdapter.ViewHolder> {
+        private String[] imagesList;
 
 
-        public AttractionsListAdapter(List<Attractions> list) {
-            mAttractions = list;
+        public AttractionsImagesRecyclerAdapter(String[] list) {
+            this.imagesList = list;
         }
 
         @Override
-        public AttractionsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public AttractionsImagesRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_cities_attractions, parent, false);
-            return new AttractionsListAdapter.ViewHolder(v);
+            return new AttractionsImagesRecyclerAdapter.ViewHolder(v);
         }
 
         @Override
-        public void onBindViewHolder(AttractionsListAdapter.ViewHolder holder, int position) {
-            final Attractions place = mAttractions.get(position);
-            holder.attraction_name.setText(place.getName());
+        public void onBindViewHolder(AttractionsImagesRecyclerAdapter.ViewHolder holder, int position) {
+            final String image = imagesList[position];
             Drawable drawable = ContextCompat.getDrawable(getBaseContext(),
-                    getBaseContext().getResources().getIdentifier(place.getImages()[0], "drawable", getBaseContext().getPackageName()));
+                    getBaseContext().getResources().getIdentifier(image, "drawable", getBaseContext().getPackageName()));
             holder.attraction_image.setImageDrawable(drawable);
-            holder.card.setOnClickListener(new View.OnClickListener() {
+            /*holder.card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent attractionActivity = new Intent(v.getContext(), AttractionsActivity.class);
@@ -99,14 +98,14 @@ public class CitiesActivity extends AppCompatActivity {
                     attractionActivity.putExtra("cityId", city.getId() );
                     v.getContext().startActivity(attractionActivity);
                 }
-            });
+            });*/
 
 
         }
 
         @Override
         public int getItemCount() {
-            return mAttractions.size();
+            return imagesList.length;
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder{
