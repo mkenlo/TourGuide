@@ -38,6 +38,8 @@
     </string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_attractions_detail">More Details</string>
+    <string name="more_photos">Photos</string>
+    <string name="like_button">Like button</string>
 
 
 </resources>

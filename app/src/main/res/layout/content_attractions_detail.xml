@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginTop="@dimen/text_margin"
-            android:text="Material Design"
+            android:text="@string/place_name"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginTop="@dimen/text_margin"
-            android:text="Top Attractions"
+            android:text="@string/more_photos"
             android:textSize="22sp"
             android:textStyle="bold" />
 

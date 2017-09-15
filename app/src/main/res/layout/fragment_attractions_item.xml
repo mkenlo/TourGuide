@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:contentDescription="Star rating"
+                    android:contentDescription="@string/like_button"
                     android:src="@drawable/ic_favorite" />
 
             </RelativeLayout>

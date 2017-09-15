@@ -21,8 +21,8 @@ import java.util.List;
 
 public class AttractionsRecyclerAdapter extends RecyclerView.Adapter<AttractionsRecyclerAdapter.ViewHolder> {
 
-    List<Attractions> places;
-    Context context;
+    private List<Attractions> places;
+    private Context context;
 
     public AttractionsRecyclerAdapter(List<Attractions> list, Context context) {
         this.places = list;
@@ -62,10 +62,10 @@ public class AttractionsRecyclerAdapter extends RecyclerView.Adapter<Attractions
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView place_name;
-        ImageView place_image;
-        TextView place_location;
-        CardView place;
+        private TextView place_name;
+        private ImageView place_image;
+        private TextView place_location;
+        private CardView place;
 
         public ViewHolder(View itemView) {
             super(itemView);
